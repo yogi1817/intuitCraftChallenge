@@ -1,0 +1,120 @@
+openapi: "3.0.3"
+info:
+  description: "Test API"
+  version: "1.0.0"
+  title: "Test API"
+
+tags:
+  - name: challange
+
+servers:
+  - url: https://localhost:8080/api/v1
+    description: local
+
+paths:
+  '/api/players':
+    get:
+      tags:
+        - challange
+      summary: List of all players
+      operationId: getPlayerList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+
+  '/api/players/{playerID}':
+    get:
+      tags:
+        - challange
+      summary: Find the player with playerID
+      operationId: getUniquePlayer
+      parameters:
+        - in: path
+          name: playerID
+          required: true
+          description: player ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+
+  '/api/player':
+    post:
+      tags:
+        - challange
+      summary: This api is to add data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Player"
+      responses:
+        "200":
+          description: OK
+
+  '/api/loadDate':
+    get:
+      tags:
+        - challange
+      summary: Loaddata
+      operationId: loadData
+      responses:
+        "200":
+          description: OK
+
+components:
+  schemas:
+    Player:
+      type: object
+      properties:
+        playerID:
+          type: string
+        birthDate:
+          type: string
+        birthCountry:
+          type: string
+        birthState:
+          type: string
+        birthCity:
+          type: string
+        deathDate:
+          type: string
+        deathCountry:
+          type: string
+        deathState:
+          type: string
+        deathCity:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nameGiven:
+          type: string
+        weight:
+          type: string
+        height:
+          type: string
+        bats:
+          type: string
+        throwsHand:
+          type: string
+        debut:
+          type: string
+        finalGame:
+          type: string
+        retroID:
+          type: string
+        bbrefID:
+          type: string
